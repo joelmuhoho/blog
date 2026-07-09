@@ -1,66 +1,110 @@
-<nav class="navbar navbar-expand-lg bg-light navbar-light  mb-4">
+<nav class="navbar navbar-expand-lg bg-light navbar-light mb-4">
+  <div class="container">
+    <!-- Logo -->
+    <div class="navbar-header">
+      <h1>
+        <a class="navbar-brand" href="{% url 'post_list'%}"
+          ><i class="fas fa-feather-alt"></i> Blog</a
+        >
+      </h1>
+    </div>
 
-      <div class="container">
+    <!-- toggle button -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#collapsibleNavbar"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-        <!-- Logo -->
-        <div class="navbar-header">
-          <h1> <a class="navbar-brand" href="{% url 'post_list'%}"><i class="fas fa-feather-alt"></i>Wise Programmer Blog</a> </h1>
-        </div>
+    <!-- search input n button -->
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="nav navbar-nav ml-auto">
+        <form method="get" action="{%url 'search' %}" class="form-inline my-2">
+          <div class="input-group mb-3">
+            <input
+              type="search"
+              name="query"
+              class="form-control"
+              placeholder="Search post"
+              aria-label="Search post"
+              aria-describedby="basic-addon2"
+            />
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="submit">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+      </ul>
+    </div>
 
-        <!-- toggle button -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        
-        <!-- search input n button -->
-        <div class="collapse navbar-collapse" id="collapsibleNavbar">
-          <ul class="nav navbar-nav ml-auto">
-            <form method="get" action="{%url 'search' %}" class="form-inline my-2  ">
-              <div class="input-group mb-3">
-                <input type="search" name="query" class="form-control" placeholder="Search post" aria-label="Search post" aria-describedby="basic-addon2" >
-                <div class="input-group-append">
-                  <button class="btn btn-outline-secondary" type="submit" >
-                    <i class="fas fa-search"></i>
-                  </button>
-                </div>
-              </div>
-            </form>
-          </ul>
-        </div>
+    <!-- Navbar links -->
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="nav navbar-nav ml-auto">
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'post_new'%}"
+            ><i class="fa fa-plus">Add post</i></a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'post_draft_list' %}"
+            ><i class="fas fa-pencil-ruler fa">view drafts</i></a
+          >
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            >Account</a
+          >
+          <div
+            class="dropdown-menu dropdown-menu-right"
+            aria-labelledby="navbarDropdown"
+          >
+            <a class="nav-link btn-outline-light" href="{% url 'profile'%}"
+              ><i class="far fa-user"> Profile</i></a
+            >
+            <a class="nav-link btn-outline-light" href="{% url 'user_posts'%}"
+              ><i class="fas fa-pencil-alt"> My posts</i>
+            </a>
+            <div class="dropdown-divider"></div>
+            <div class="d-flex justify-content-center align-items-center">
+              <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Logout</button>
+              </form>
+            </div>
+          </div>
+        </li>
+      </ul>
+      {% else %}
 
-        <!-- Navbar links -->   
-        <div class="collapse navbar-collapse " id="collapsibleNavbar">
-          <ul class="nav navbar-nav ml-auto">  
-            {% if user.is_authenticated %}
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'post_new'%}"><i class="fa fa-plus">Add post</i></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'post_draft_list' %}"><i class="fas fa-pencil-ruler fa">view drafts</i></a>
-            </li>
-            <li class="nav-item dropdown">
+      <form class="form-inline">
+        <a
+          class="btn btn-outline-secondary mr-4"
+          href="{% url 'login'%}"
+          style="border: none"
+          >Log in</a
+        >
+        <a
+          class="btn btn-outline-primary mr-4"
+          href="{% url 'signup'%}"
+          style="border: none"
+          >Sign up</a
+        >
+      </form>
 
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ user.username}}</a>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="nav-link btn-outline-light" href="{% url 'profile'%}"><i class="far fa-user "> Profile</i></a>
-                <a class="nav-link btn-outline-light" href="{% url 'user_posts'%}"><i class="fas fa-pencil-alt"> My posts</i></a>
-                
-                
-                <a class="nav-link" href="{% url 'password_change'%}">Change password</a>
-                <div class="dropdown-divider"></div>
-                <a class="nav-link btn-outline-danger" href="{% url 'logout'%}"><i class="fas fa-sign-out-alt fa"></i>Log out</a>
-              </div>
-            </li> 
-          </ul>
-          {% else %}
-
-                <form class="form-inline ">
-                  <a class="btn btn-outline-secondary mr-4 " href="{% url 'login'%}" style="border:none;" ><i class="fas fa-sign-in-alt fa"></i>Log in</a>
-                  <a class="btn btn-outline-primary mr-4" href="{% url 'signup'%}" style="border:none; ><i class="fas fa-user-plus"></i> Sign up</a>
-                </form>
-
-                {% endif %} 
-        </div>
-
-      </div>
-    </nav>
+      {% endif %}
+    </div>
+  </div>
+</nav>

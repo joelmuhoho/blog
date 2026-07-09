@@ -1,125 +1,133 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0"/>
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-    <title>
-      {% block title %} {% endblock%}
-    </title>
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
-    <!-- Bootstrap core CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-    <link rel="stylesheet" href="{% static 'styles/blog.css' %}" />
-    <link rel="icon" href="static/images/icon.png" sizes="32x32" type="image/png">
-  </head>
+  <title>
+    {% block title %} {% endblock%}
+  </title>
 
-  <body>
-   <button class="btn-sm" onclick="topFunction()" id="myBtn" title="Go to top"><i class="fas fa-chevron-up"></i></button>
-    {% block mainnav %}
-    <!-- Nav bar -->
-    <!-- Page Content -->
-    {% endblock %}
-    
-    
-    <div class="container mb-4 content">
-    
-      <div class="row">
-      
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
+    integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
+  <!-- Bootstrap core CSS -->
+  <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+  <!-- Bootstrap JS and jQuery -->
+
+  <link rel="stylesheet" href="{% static 'styles/blog.css' %}" />
+  <link rel="icon" href="static/images/icon.png" sizes="32x32" type="image/png">
+</head>
+
+<body>
+  <!-- <button class="btn-sm" onclick="topFunction()" id="myBtn" title="Go to top"><i class="fas fa-chevron-up"></i></button> -->
+  {% block mainnav %}
+  <!-- Nav bar -->
+  <!-- Page Content -->
+  {% endblock %}
+
+
+  <div class="container mb-4 content">
+
+    <div class="row">
+
       {% block content %}
-        <!-- 1st colum in ROW 2 (BLOCK CONTENTS)-->
+      <!-- 1st colum in ROW 2 (BLOCK CONTENTS)-->
 
-        <!-- ONLY or Whith 2nd colum-->
+      <!-- ONLY or Whith 2nd colum-->
 
-        <!-- 2st colum in ROW 2 (Widgets)-->
-        <!-- 1st ROW in colum 2,Row 2 (Search Widget) -->
+      <!-- 2st colum in ROW 2 (Widgets)-->
+      <!-- 1st ROW in colum 2,Row 2 (Search Widget) -->
 
-        {% endblock %}
-      </div>
+      {% endblock %}
     </div>
-    
-    <!-- Footer -->
-    <footer class=" container padding ">
-      <!-- Footer Elements -->
-      <div class="container-fluid p-3 p-md-5">
-        <!-- Social buttons -->
-        <ul class="list-unstyled list-inline text-center">
-          <li class="list-inline-item">
-           <a class="btn-floating btn-fb mx-1">
-              <i class="fab fa-facebook-f"> </i>
-           </a>
-          </li>
-          <li class="list-inline-item">
-            <a class="btn-floating btn-tw mx-1">
-              <i class="fab fa-twitter"> </i>
-            </a>
-          </li>
-          <li class="list-inline-item">
-            <a class="btn-floating btn-gplus mx-1">
-              <i class="fab fa-google-plus-g"> </i>
-            </a>
-          </li>
-          <li class="list-inline-item">
-            <a class="btn-floating btn-li mx-1">
-              <i class="fab fa-linkedin-in"> </i>
-            </a>
-          </li>
-          <li class="list-inline-item">
-            <a class="btn-floating btn-dribbble mx-1">
-              <i class="fab fa-dribbble"> </i>
-            </a>
-          </li>
-        </ul>
-        <!-- Social buttons -->
-      </div>
-      <!-- Footer Elements -->
-  
-      <!-- Copyright -->
-      <div class="footer-copyright text-center py-3">© 2019 Copyright:
-        <a href="#"> wiseprogrammer.com</a>
-      </div>
-      <!-- Copyright -->
-    </footer>
- 
-      
-    <!--Scripts -->
-    <script>
-      //Get the button
-      var mybutton = document.getElementById("myBtn");
+  </div>
 
-      // When the user scrolls down 20px from the top of the document, show the button
-      window.onscroll = function() {scrollFunction()};
+  <!-- Footer -->
+  <footer class=" container padding ">
+    <!-- Footer Elements -->
+    <div class="container-fluid p-3 p-md-5">
+      <!-- Social buttons -->
+      <ul class="list-unstyled list-inline text-center">
+        <li class="list-inline-item">
+          <a class="btn-floating btn-fb mx-1">
+            <i class="fab fa-facebook-f"> </i>
+          </a>
+        </li>
+        <li class="list-inline-item">
+          <a class="btn-floating btn-tw mx-1">
+            <i class="fab fa-twitter"> </i>
+          </a>
+        </li>
+        <li class="list-inline-item">
+          <a class="btn-floating btn-gplus mx-1">
+            <i class="fab fa-google-plus-g"> </i>
+          </a>
+        </li>
+        <li class="list-inline-item">
+          <a class="btn-floating btn-li mx-1">
+            <i class="fab fa-linkedin-in"> </i>
+          </a>
+        </li>
+        <li class="list-inline-item">
+          <a class="btn-floating btn-dribbble mx-1">
+            <i class="fab fa-dribbble"> </i>
+          </a>
+        </li>
+      </ul>
+      <!-- Social buttons -->
+    </div>
+    <!-- Footer Elements -->
 
-      function scrollFunction()
-      {
-        if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600)
-        {
-          mybutton.style.display = "block";
-        }
-        else
-        {
-          mybutton.style.display = "none";
-        }
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© {% now "Y" %} copyright
+      <a href="https://joelmuhoho.com" target="_blank">joelmuhoho.com</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+
+
+  <!--Scripts -->
+  <script>
+    //Get the button
+    var mybutton = document.getElementById("myBtn");
+
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () { scrollFunction() };
+
+    function scrollFunction() {
+      if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
+        mybutton.style.display = "block";
       }
-
-      // When the user clicks on the button, scroll to the top of the document
-      function topFunction()
-      {
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
+      else {
+        mybutton.style.display = "none";
       }
-    </script>
+    }
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    
-    <!-- /Scripts -->
-  
-  </body>
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+  </script>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+  <!-- /Scripts -->
+
+</body>
+
 </html>

@@ -1,9 +1,82 @@
 {% extends 'blog/base.html' %} {% load markdownify %} {% block title%} My Blog
-{% endblock%} 
+{% endblock%}
 {% block mainnav %}
-  {% include "navbar.html" %}
-{% endblock %} 
+{% include "navbar.html" %}
+{% endblock %}
 {% block content%}
-<h1>{{profile}}</h1>
-<h1>{{profile.email}}</h1>
+
+<!-- blog/templates/blog/user_profile.html -->
+<div class="bg-gray-100 dark:bg-gray-950 py-12" style="width: 90%;">
+  <div class="container px-4 md:px-6">
+    <div class="bg-white dark:bg-gray-900 rounded-lg shadow-sm">
+      <div class="d-flex flex-column flex-sm-row p-6 md:p-8">
+        <div style="width: 20%; display: flex; align-items: center; justify-content: center;">
+          <img src="http://placehold.it/50x50" alt="@{{profile.username|make_list|first}}"
+            class="w-full h-full rounded-full mr-3 rounded-circle">
+          <span class="text-lg font-bold">{{profile.username|make_list|first}}</span>
+        </div>
+        <div class="mt-4 md:mt-0 flex-1">
+          <h1 class="text-2xl font-bold">{{profile.username}}</h1>
+          <p class="text-gray mt-2"> Last Login: {{profile.last_login}}.</p>
+          <p class="text-gray-500 dark:text-gray-400 mt-2 line-clamp-2">
+
+          </p>
+          <div class="mt-4 d-flex items-center gap-4">
+            <a href="{% url 'password_change'%}" class="btn btn-outline-primary stretched-link">Change Password</a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-gray-200 dark:border-gray-800 mt-4">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+              aria-controls="profile" aria-selected="true">Profile Info</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="blogs-tab" data-toggle="tab" href="#blogs" role="tab" aria-controls="blogs"
+              aria-selected="false">Blog Posts ({{user_posts|length}})</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" role="tab" aria-controls="settings"
+              aria-selected="false">Settings</a>
+          </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <div class="p-6 space-y-6">
+              <div class="grid gap-4">
+                <div class="grid gap-2">
+                  <label for="name">Username</label>
+                  <input type="text" id="username" class="form-control" value="{{profile.username}}">
+                </div>
+                <div class="grid gap-2">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" class="form-control" value="{{profile.email}}">
+                </div>
+              </div>
+              <hr>
+              <button class="btn btn-primary">Update profile</button>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="blogs" role="tabpanel" aria-labelledby="blogs-tab">
+            {% if user_posts|length == 0 %}
+            <p>No posts yet</p>
+            {% else %}
+            <div class="card" style="width: 50%;">
+              <ul class="list-group list-group-flush">
+                {% for post in user_posts %}
+                <li class="list-group-item">{{post.title}}</li>
+                {% endfor %}
+              </ul>
+            </div>
+            {% endif %}
+          </div>
+          <div class="tab-pane fade" id="settings" role="tabpanel" aria-labelledby="settings-tab">
+            <p>Settings</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock%}

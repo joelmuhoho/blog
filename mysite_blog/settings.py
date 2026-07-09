@@ -1,8 +1,8 @@
-
+from dotenv import load_dotenv
 import os
 
 from django.contrib.messages import constants as messages
-
+load_dotenv()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -15,20 +15,37 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'qk30b6=w11xzv-g)e&9ws(j%o)1_llbj@z_w^-*^n)kf^fa8xx'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+environment = os.environ.get('ENVIRONMENT')
+if environment == 'development':
+    DEBUG = True
+else:
+    DEBUG = False
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-ALLOWED_HOSTS = ['52832ccb.ngrok.io',
-                 '127.0.0.1','joekariuki3.pythonanywhere.com'
-                 ]
+ALLOWED_HOSTS = ['*']
 LOGIN_URL = '/accounts/login'
 
 
 LOGIN_REDIRECT_URL = 'post_list'
 LOGOUT_REDIRECT_URL = 'post_list'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# Base url to serve media files
+MEDIA_URL = '/media/'
+
+# Path where media is stored
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+# console email
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# SMTP configuration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.environ.get('User_Email')
+EMAIL_HOST_PASSWORD = os.environ.get('User_Password')
 
 
 # Application definition
@@ -42,6 +59,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog',
     'crispy_forms',
+    'crispy_bootstrap4'
 ]
 
 MIDDLEWARE = [
@@ -125,7 +143,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_URL = '/static/'
-STATIC_ROOT = '/home/joekariuki3/mysite_blog_django/blog/static'
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 
 MESSAGE_TAGS = {

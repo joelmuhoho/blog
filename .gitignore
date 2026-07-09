@@ -4,3 +4,16 @@
 *.pot
 __pycache__/
 local_settings.py`
+.env
+*venv*
+.venv
+db.sqlite3
+*.json
+*.sql
+*.db
+.shmedia/
+media/*
+*deploy*
+*.vscode/
+*.vscode/*
+*.json
